@@ -1,0 +1,5 @@
+[2018-07-10 00:26:19.324] [DEBUG] FabricConfiguration - Msp ID : Org1MSP
+[2018-07-10 00:26:19.344] [DEBUG] FabricConfiguration - Msp ID : Org1MSP
+[2018-07-10 00:26:19.379] [ERROR] Query - Error: 14 UNAVAILABLE: Connect Failed
+    at new createStatusError (/home/hyper/blockchain-explorer/node_modules/grpc/src/client.js:64:15)
+    at /home/hyper/blockchain-explorer/node_modules/grpc/src/client.js:583:15

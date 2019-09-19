@@ -1,0 +1,70 @@
+.form-input {
+  width: 100%; }
+  .form-input .label {
+    font-size: 14px;
+    color: #7f8fa4; }
+  .form-input--phone .react-phone-number-input {
+    line-height: 0; }
+  .form-input .input {
+    border: 1px solid #b5b6b7;
+    height: 34px;
+    width: 100%;
+    padding-left: 14px;
+    padding-right: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: normal; }
+    .form-input .input::-webkit-contacts-auto-fill-button {
+      visibility: hidden; }
+    .form-input .input::-webkit-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-input .input::-moz-placeholder {
+      font-weight: 500;
+      color: #999ea8; }
+    .form-input .input:-ms-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-input .input::-ms-clear {
+      display: none; }
+    .form-input .input::-ms-reveal {
+      display: none; }
+    .form-input .input[type="number"] {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0; }
+      .form-input .input[type="number"]::-webkit-inner-spin-button, .form-input .input[type="number"]::-webkit-outer-spin-button, .form-input .input[type="number"]::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0; }
+    .form-input .input:focus {
+      border: 1px solid #0075c6;
+      outline: none;
+      box-shadow: none; }
+    .form-input .input_higher {
+      height: 45px; }
+    .form-input .input_error {
+      border: 1px solid #d53354 !important;
+      animation: input-error 0.7s; }
+      .form-input .input_error:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-input .input_error[value=""]:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-input .input_error[value=""] {
+        border: 1px solid #d53354 !important; }
+      .form-input .input_error:not(:empty) {
+        border: 1px solid #b5b6b7; }
+      .form-input .input_error::-webkit-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }
+      .form-input .input_error::-moz-placeholder {
+        font-weight: 500;
+        color: #999ea8; }
+      .form-input .input_error:-ms-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }
+  .form-input .error {
+    color: #d53354;
+    margin-top: 5px;
+    font-size: 14px; }

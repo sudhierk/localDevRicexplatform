@@ -1,0 +1,21 @@
+.preview-pdf {
+  canvas {
+    margin: 0 auto;
+  }
+  &__pagination {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    button {
+      padding: 0;
+      &[disabled] {
+        cursor: not-allowed;
+      }
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

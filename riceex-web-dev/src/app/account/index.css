@@ -1,0 +1,79 @@
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  min-height: 100vh;
+  background: #1d232e url(../../static/img/bg.jpg) no-repeat center center;
+  background-size: cover; }
+  .account-tabs {
+    position: relative;
+    width: calc(100% + 80px);
+    margin-left: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    list-style-type: none;
+    background-color: #eff3f6;
+    box-shadow: 0 -2px 4px 0px rgba(0, 0, 0, 0.15) inset; }
+  .account-tab {
+    height: 53px;
+    padding: 0 12px;
+    margin-right: 10px;
+    border-bottom: 2px solid transparent;
+    font-size: 18px;
+    line-height: 53px;
+    color: #354052;
+    transition: border-bottom 0.2s; }
+    .account-tab:hover, .account-tab.active {
+      border-bottom: 2px solid #0065ab;
+      color: #0065ab; }
+  .account-link {
+    display: block;
+    text-decoration: none;
+    color: #9299a4;
+    transition: color 0.2s; }
+    .account-link:hover {
+      color: #0065ab;
+      text-decoration: none; }
+  .account-submit {
+    display: block;
+    height: 46px;
+    padding: 0 30px;
+    min-width: 138px;
+    border: 1px solid #0087e4;
+    border-radius: 4px;
+    -webkit-box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.45);
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.45);
+    background-color: #0065ab;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s; }
+    .account-submit:hover {
+      transform: scale(1.03); }
+    .account-submit:focus {
+      outline: none; }
+    .account-submit:active {
+      transform: scale(1);
+      -webkit-box-shadow: 0px 0px 0px 0px #000;
+      -moz-box-shadow: 0px 0px 0px 0px #000;
+      box-shadow: 0px 0px 0px 0px #000; }
+
+@keyframes input-error {
+  from {
+    transform: translateX(0px); }
+  25% {
+    transform: translateX(-10px); }
+  50% {
+    transform: translateX(10px); }
+  75% {
+    transform: translateX(-10px); }
+  to {
+    transform: translateX(0px); } }

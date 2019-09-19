@@ -1,0 +1,65 @@
+.form-date-wrapper {
+  width: 100%; }
+  .form-date-wrapper .form-date:nth-of-type(1) {
+    margin-bottom: 1rem; }
+  .form-date-wrapper .label {
+    font-size: 14px;
+    color: #7f8fa4; }
+  .form-date-wrapper .input {
+    border: 1px solid #b5b6b7;
+    height: 34px;
+    width: 100%;
+    padding-left: 14px;
+    padding-right: 35px;
+    border-radius: 4px;
+    font-size: 14px; }
+    .form-date-wrapper .input::-webkit-contacts-auto-fill-button {
+      visibility: hidden; }
+    .form-date-wrapper .input::-webkit-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-date-wrapper .input::-moz-placeholder {
+      font-weight: 500;
+      color: #999ea8; }
+    .form-date-wrapper .input:-ms-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-date-wrapper .input::-ms-clear {
+      display: none; }
+    .form-date-wrapper .input::-ms-reveal {
+      display: none; }
+    .form-date-wrapper .input [type="number"] {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0; }
+      .form-date-wrapper .input [type="number"]::-webkit-inner-spin-button, .form-date-wrapper .input [type="number"]::-webkit-outer-spin-button, .form-date-wrapper .input [type="number"]::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0; }
+    .form-date-wrapper .input:focus {
+      border: 1px solid #0075c6;
+      outline: none;
+      box-shadow: none; }
+    .form-date-wrapper .input_higher {
+      height: 45px; }
+    .form-date-wrapper .input_error {
+      border: 1px solid #d53354 !important;
+      animation: input-error 0.7s; }
+      .form-date-wrapper .input_error:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-date-wrapper .input_error[value=""]:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-date-wrapper .input_error[value=""] {
+        border: 1px solid #d53354 !important; }
+      .form-date-wrapper .input_error:not(:empty) {
+        border: 1px solid #b5b6b7; }
+      .form-date-wrapper .input_error::-webkit-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }
+      .form-date-wrapper .input_error::-moz-placeholder {
+        font-weight: 500;
+        color: #999ea8; }
+      .form-date-wrapper .input_error:-ms-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }

@@ -1,0 +1,134 @@
+.forgot-container {
+  max-width: 382px;
+  min-height: 497px;
+  padding: 40px 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.3); }
+  .forgot-container--loading {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .forgot-container--loading .lds-ring {
+      width: 50px;
+      height: 50px; }
+      .forgot-container--loading .lds-ring div {
+        width: 50px;
+        height: 50px; }
+
+@media (min-width: 390px) {
+  .forgot-container {
+    width: 382px; } }
+
+.forgot-heading {
+  color: #000;
+  text-align: center; }
+
+.forgot-logo {
+  display: block;
+  margin: 20px auto 15px; }
+
+.forgot-text {
+  color: #354052;
+  width: 85%;
+  margin: 35px auto 0 auto;
+  font-size: 14px; }
+
+.forgot-send {
+  display: block !important;
+  margin: 15px auto 0 auto;
+  min-height: 33.5px;
+  min-width: 116.25px; }
+
+.forgot-link {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  font-size: 14px;
+  color: #0065ab; }
+
+.forgot-mail {
+  flex-basis: 100%; }
+
+.forgot-input:nth-of-type(1) {
+  margin-bottom: 20px; }
+
+.forgot-tab {
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-top: -40px; }
+
+.forgot-container .btn {
+  transition: background 0.25s, box-shadow 0.25s;
+  border-radius: 2px;
+  text-transform: capitalize;
+  box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border: 1px solid #0086e4;
+  color: #fff;
+  font-size: 1rem; }
+
+.forgot-container .btn--blue {
+  background-color: #0065ab; }
+
+.forgot-container .btn--blue:hover {
+  background: #187abe; }
+
+.forgot-container .btn--blue:focus {
+  box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15); }
+
+.forgot-container .btn--blue:active {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15); }
+
+@media (max-width: 410px) {
+  .forgot-text {
+    width: 90%; } }
+
+@media (max-width: 576px) {
+  .logo-fp {
+    display: none !important; } }
+
+.logo-fp {
+  display: block; }
+
+.logo--fp {
+  text-align: center; }
+
+.logo-fp img {
+  display: block;
+  width: 100px;
+  margin: 0 auto; }
+
+.text-p {
+  margin-top: 5%;
+  text-align: center;
+  color: #000; }
+
+.login-btn-fp {
+  background-color: #0097a7 !important;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  color: white !important;
+  height: 45px;
+  border: 2px solid #1faec8 !important; }
+
+.login-btn-fp:hover {
+  opacity: 0.7 !important; }
+
+.action-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  position: inherit;
+  margin-top: 20px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 302px; }
+
+@media (max-width: 410px) {
+  .action-block {
+    width: 85%;
+    margin-left: 7.5%; } }

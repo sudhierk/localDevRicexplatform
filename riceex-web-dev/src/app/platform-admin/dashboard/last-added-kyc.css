@@ -1,0 +1,17 @@
+.last-added-kyc .ant-table-tbody td .company-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #A0A0A0; }
+
+.last-added-kyc .ant-table-tbody td .users-count {
+  color: #676767;
+  font-size: 17px;
+  font-weight: 600; }
+
+.last-added-kyc .ant-table-tbody td .added-by {
+  color: #888888;
+  font-size: 14px; }
+
+.last-added-kyc .ant-table-tbody td .status {
+  font-weight: 600;
+  font-size: 17px; }

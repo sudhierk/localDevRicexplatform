@@ -1,0 +1,111 @@
+.pagination {
+  overflow: hidden;
+  margin: 0.5rem auto 0;
+  width: auto;
+  height: 2.25rem;
+  border: 1px solid #e6eaee;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+  .pagination__block, .pagination li {
+    position: relative;
+    width: 43.4px;
+    height: calc(2.25rem - 2px);
+    background-color: #fff;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: calc(2.25rem - 2px);
+    color: #adb0b5; }
+    .pagination__block:not(:last-child), .pagination li:not(:last-child) {
+      border-right: 1px solid #e6eaee; }
+    .pagination__block:first-child, .pagination li:first-child {
+      position: relative;
+      color: #354052; }
+      .pagination__block:first-child.disabled:before, .pagination li:first-child.disabled:before {
+        border-right: 0.4rem solid #ced0da; }
+      .pagination__block:first-child:before, .pagination li:first-child:before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-top: 0.4rem solid transparent;
+        border-bottom: 0.4rem solid transparent;
+        border-right: 0.4rem solid #354052;
+        transform: translate(-50%, -50%);
+        -webkit-transition: border-right 0.2s;
+        -moz-transition: border-right 0.2s;
+        -ms-transition: border-right 0.2s;
+        -o-transition: border-right 0.2s;
+        transition: border-right 0.2s;
+        cursor: pointer; }
+    .pagination__block:last-child, .pagination li:last-child {
+      position: relative;
+      color: #354052; }
+      .pagination__block:last-child.disabled:before, .pagination li:last-child.disabled:before {
+        border-right: 0.4rem solid #ced0da; }
+      .pagination__block:last-child:before, .pagination li:last-child:before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-top: 0.4rem solid transparent;
+        border-bottom: 0.4rem solid transparent;
+        border-right: 0.4rem solid #354052;
+        transform: translate(-50%, -50%) rotate(180deg);
+        -webkit-transition: border-right 0.2s;
+        -moz-transition: border-right 0.2s;
+        -ms-transition: border-right 0.2s;
+        -o-transition: border-right 0.2s;
+        transition: border-right 0.2s;
+        cursor: pointer; }
+    .pagination__block a, .pagination li a {
+      text-decoration: none;
+      color: #adb0b5; }
+    .pagination__block.active a, .pagination li.active a {
+      color: #354052; }
+    .pagination__block_prev:before, .pagination li_prev:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-right: 0.4rem solid #ced0da;
+      transform: translate(-50%, -50%);
+      -webkit-transition: border-right 0.2s;
+      -moz-transition: border-right 0.2s;
+      -ms-transition: border-right 0.2s;
+      -o-transition: border-right 0.2s;
+      transition: border-right 0.2s;
+      cursor: pointer; }
+    .pagination__block_next:before, .pagination li_next:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-right: 0.4rem solid #ced0da;
+      transform: translate(-50%, -50%) rotate(180deg);
+      -webkit-transition: border-right 0.2s;
+      -moz-transition: border-right 0.2s;
+      -ms-transition: border-right 0.2s;
+      -o-transition: border-right 0.2s;
+      transition: border-right 0.2s;
+      cursor: pointer; }
+    .pagination__block_current, .pagination li_current {
+      color: #354052; }
+    .pagination__block_inactive:before, .pagination__block:hover:before, .pagination li_inactive:before, .pagination li:hover:before {
+      border-right: 0.4rem solid #354052; }

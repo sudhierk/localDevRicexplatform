@@ -1,0 +1,110 @@
+image: docker:git
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+    - node_modules/
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  APP_IMAGE: gitlab-ci.testserver.kiev.ua:5555/riceexchangeplatform/riceex-web:$CI_PIPELINE_ID.$CI_COMMIT_REF_NAME
+  DEV_IP: 178.62.254.246
+  STAGE_IP: 134.209.89.171
+  DOCKER_TLS_CERTDIR: ""
+
+build-dev:
+  stage: build
+  tags:
+    - docker
+  only:
+    - dev
+  before_script:
+      - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555
+  script:
+    - docker build --pull  -t $APP_IMAGE --build-arg build_env=dev .
+    - docker push $APP_IMAGE
+
+build-stage:
+  stage: build
+  tags:
+    - docker
+  only:
+    - stage
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555
+  script:
+    - docker build --pull  -t $APP_IMAGE --build-arg build_env=stage .
+    - docker push $APP_IMAGE
+
+deploy-dev:
+  stage: deploy
+  only:
+    - dev
+  environment:
+    name: dev
+  when: on_success
+  tags:
+    - docker
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@$DEV_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $APP_IMAGE && (docker stop riceex-web || true) && (docker rm riceex-web || true) && docker run -d --name riceex-web --network host $APP_IMAGE"
+
+
+deploy-stage:
+  stage: deploy
+  only:
+    - stage
+  environment:
+    name: stage
+  when: manual
+  tags:
+    - docker
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@$STAGE_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $APP_IMAGE && (docker stop riceex-web || true) && (docker rm riceex-web || true) && docker run -d --name riceex-web --network host $APP_IMAGE"
+

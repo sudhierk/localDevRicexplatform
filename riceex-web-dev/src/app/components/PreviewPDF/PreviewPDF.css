@@ -1,0 +1,15 @@
+.preview-pdf canvas {
+  margin: 0 auto; }
+
+.preview-pdf__pagination {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+  .preview-pdf__pagination button {
+    padding: 0; }
+    .preview-pdf__pagination button[disabled] {
+      cursor: not-allowed; }
+    .preview-pdf__pagination button svg {
+      width: 50px;
+      height: 50px; }

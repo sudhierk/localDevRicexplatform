@@ -1,0 +1,85 @@
+.profile-kyc {
+  background-color: #fff;
+  padding: 35px 50px; }
+  .profile-kyc__header {
+    background-color: #eeeeef;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 24px;
+    font-size: 14px; }
+  .profile-kyc__description {
+    color: #9ca9b9;
+    font-size: 14px; }
+  .profile-kyc__content {
+    margin-bottom: 1.5rem; }
+  .profile-kyc__submit {
+    transition: background 0.25s, box-shadow 0.25s;
+    border-radius: 2px;
+    text-transform: capitalize;
+    box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    width: 100%;
+    margin-top: 11px;
+    background-color: #83AC18;
+    border-color: #93C01F; }
+    .profile-kyc__submit:hover {
+      background-color: #93C01F; }
+    .profile-kyc__submit[type=button] {
+      background-color: #0065ab;
+      border-color: #0086e4; }
+      .profile-kyc__submit[type=button]:hover {
+        background-color: #187abe; }
+    .profile-kyc__submit:focus {
+      box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15); }
+    .profile-kyc__submit:active {
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15); }
+  .profile-kyc .form-input, .profile-kyc .form-select {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 15px);
+    font-size: 14px; }
+  .profile-kyc fieldset[disabled] input {
+    background-color: #f9f9f9;
+    font-size: 14px;
+    font-weight: 600;
+    color: #7f8fa4;
+    cursor: not-allowed; }
+  .profile-kyc fieldset[disabled] .formik-select {
+    pointer-events: none; }
+    .profile-kyc fieldset[disabled] .formik-select div {
+      background-color: #f9f9f9;
+      color: #7f8fa4;
+      font-weight: 600; }
+  .profile-kyc fieldset[disabled] .field-array-controls {
+    display: none; }
+  .profile-kyc .field-array-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px; }
+    .profile-kyc .field-array-controls button {
+      border: 1px solid;
+      font-weight: 600;
+      padding: 7px 38px;
+      border-radius: 20px;
+      transition: .3s ease;
+      background-color: transparent;
+      cursor: pointer; }
+      .profile-kyc .field-array-controls button:last-of-type {
+        margin-left: 1rem; }
+      .profile-kyc .field-array-controls button.add-fieldset {
+        border-color: #83AC18;
+        color: #93C01F; }
+        .profile-kyc .field-array-controls button.add-fieldset:hover {
+          color: #FFF;
+          background-color: #83AC18; }
+      .profile-kyc .field-array-controls button.remove-fieldset {
+        border-color: #d53354;
+        color: #d53354; }
+        .profile-kyc .field-array-controls button.remove-fieldset:hover {
+          background-color: #d53354;
+          color: #FFF; }

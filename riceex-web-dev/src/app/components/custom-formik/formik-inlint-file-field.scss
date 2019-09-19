@@ -1,0 +1,44 @@
+.form-file {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+  input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+  }
+  label {
+    color: #7f8fa4;
+    font-size: 14px;
+    margin: 0;
+  }
+  button {
+    border-radius: 2px;
+    text-transform: capitalize;
+    box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+    border: 1px solid #0086e4;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    height: 21px;
+    background-color: #0065ab;
+    padding: 0 8px;
+    margin: 0 1rem;
+    position: relative;
+  }
+  .file-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: #0065ab;
+    border-bottom: 1px solid #d4dfec;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .error {
+    color: #d53354;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+}

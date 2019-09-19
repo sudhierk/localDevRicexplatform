@@ -1,0 +1,32 @@
+.top-traders {
+  padding-bottom: 20px; }
+  .top-traders .item {
+    display: flex;
+    padding-top: 14px;
+    width: 100%;
+    height: 69px;
+    border-bottom: 1px solid #eaeced; }
+  .top-traders .item-id {
+    margin-right: 19px;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.16);
+    font-size: 13px;
+    line-height: 27px;
+    text-align: center;
+    font-weight: 500; }
+  .top-traders .item-name {
+    color: #4f4f4f;
+    font-size: 16px;
+    font-weight: 500; }
+    .top-traders .item-name span {
+      display: block;
+      color: #b7b7b7;
+      font-size: 12px; }
+  .top-traders .item-stat {
+    margin-right: 0;
+    margin-left: auto;
+    color: #4f4f4f;
+    font-size: 15px;
+    font-weight: 500; }

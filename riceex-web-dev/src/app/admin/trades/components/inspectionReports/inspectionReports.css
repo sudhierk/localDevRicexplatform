@@ -1,0 +1,63 @@
+.inspection-reports {
+  background: #FFF;
+  padding: 23px 27px 37px 23px; }
+  .inspection-reports__content {
+    border-radius: 5px;
+    padding: 8px 14px;
+    border: 1px solid #DFE2E5;
+    min-height: 500px; }
+  .inspection-reports__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .5rem; }
+  .inspection-reports__recent-version {
+    color: #7F8FA4; }
+  .inspection-reports__buttons button {
+    cursor: pointer;
+    width: 120px;
+    border: 1px solid #CED0DA;
+    background: linear-gradient(180deg, #FEFFFF 0%, #F2F4F7 100%);
+    margin-left: 8px;
+    color: #7F8FA4;
+    font-weight: 600;
+    padding: 7px;
+    line-height: 1;
+    border-radius: 5px; }
+  .inspection-reports__item {
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; }
+    .inspection-reports__item--as-option {
+      margin: 0;
+      padding: 10px;
+      border: none;
+      border-radius: 0;
+      cursor: pointer; }
+      .inspection-reports__item--as-option:hover, .inspection-reports__item--as-option:focus {
+        background-color: #1991eb30; }
+      .inspection-reports__item--as-option:not(:last-of-type) {
+        border-bottom: 1px solid #D1D1D1; }
+    .inspection-reports__item--selected {
+      background-color: #1991eb !important; }
+      .inspection-reports__item--selected span {
+        color: #FFF; }
+    .inspection-reports__item span {
+      margin-right: 0.5rem; }
+    .inspection-reports__item__name {
+      font-weight: 600; }
+    .inspection-reports__item__info {
+      color: #7F8FA4;
+      font-size: 12px; }
+    .inspection-reports__item__preview-button .btn.btn-link {
+      padding: 0;
+      text-transform: none;
+      font-size: 12px; }
+  .inspection-reports__select-version {
+    align-items: center; }
+    .inspection-reports__select-version label {
+      margin: 0;
+      color: #7F8FA4; }

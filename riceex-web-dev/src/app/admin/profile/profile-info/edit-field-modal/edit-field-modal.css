@@ -1,0 +1,14 @@
+.edit-field {
+  max-width: 600px; }
+  .edit-field__description {
+    color: #7F8FA4;
+    text-align: center;
+    font-size: 14px; }
+  .edit-field__required {
+    color: #96A7BD;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 1rem; }
+  .edit-field .form-input {
+    width: 50%;
+    margin: 40px auto; }

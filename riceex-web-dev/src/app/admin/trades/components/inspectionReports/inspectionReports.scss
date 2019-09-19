@@ -1,0 +1,80 @@
+.inspection-reports {
+  background: #FFF;
+  padding: 23px 27px 37px 23px;
+  &__content {
+    border-radius: 5px;
+    padding: 8px 14px;
+    border: 1px solid #DFE2E5;
+    min-height: 500px;
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+  }
+  &__recent-version {
+    color: #7F8FA4;
+  }
+  &__buttons button {
+    cursor: pointer;
+    width: 120px;
+    border: 1px solid #CED0DA;
+    background: linear-gradient(180deg, #FEFFFF 0%, #F2F4F7 100%);
+    margin-left: 8px;
+    color: #7F8FA4;
+    font-weight: 600;
+    padding: 7px;
+    line-height: 1;
+    border-radius: 5px;
+  }
+  &__item {
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    &--as-option {
+      margin: 0;
+      padding: 10px;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      &:hover, &:focus {
+        background-color: #1991eb30;
+      }
+      &:not(:last-of-type) {
+        border-bottom: 1px solid #D1D1D1;
+      }
+    }
+    &--selected {
+      background-color: #1991eb !important;
+      span {
+        color: #FFF;
+      }
+    }
+    span {
+      margin-right: 0.5rem;
+    }
+    &__name {
+      font-weight: 600;
+    }
+    &__info {
+      color: #7F8FA4;
+      font-size: 12px;
+    }
+    &__preview-button .btn.btn-link {
+      padding: 0;
+      text-transform: none;
+      font-size: 12px;
+    }
+  }
+  &__select-version {
+    align-items: center;
+    label {
+      margin: 0;
+      color: #7F8FA4;
+    }
+  }
+}

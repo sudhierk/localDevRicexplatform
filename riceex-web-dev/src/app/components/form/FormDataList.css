@@ -1,0 +1,74 @@
+.form-datalist {
+  width: 100%; }
+  .form-datalist .label {
+    font-size: 14px;
+    color: #7f8fa4; }
+  .form-datalist .input {
+    border: 1px solid #b5b6b7;
+    height: 34px;
+    width: 100%;
+    padding-left: 14px;
+    padding-right: 35px;
+    border-radius: 4px;
+    font-size: 14px; }
+    .form-datalist .input::-webkit-contacts-auto-fill-button {
+      visibility: hidden; }
+    .form-datalist .input::-webkit-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-datalist .input::-moz-placeholder {
+      font-weight: 500;
+      color: #999ea8; }
+    .form-datalist .input:-ms-input-placeholder {
+      font-weight: 500;
+      color: rgba(153, 158, 168, 0.5); }
+    .form-datalist .input::-ms-clear {
+      display: none; }
+    .form-datalist .input::-ms-reveal {
+      display: none; }
+    .form-datalist .input:focus {
+      border: 1px solid #0075c6;
+      outline: none;
+      box-shadow: none; }
+    .form-datalist .input_higher {
+      height: 45px; }
+    .form-datalist .input_error, .form-datalist .input_error--dropdown {
+      border: 1px solid #d53354 !important;
+      animation: input-error 0.7s; }
+      .form-datalist .input_error:focus, .form-datalist .input_error--dropdown:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-datalist .input_error[value=""]:focus, .form-datalist .input_error--dropdown[value=""]:focus {
+        border: 1px solid #0075c6 !important; }
+      .form-datalist .input_error[value=""], .form-datalist .input_error--dropdown[value=""] {
+        border: 1px solid #d53354 !important; }
+      .form-datalist .input_error:not(:empty), .form-datalist .input_error--dropdown:not(:empty) {
+        border: 1px solid #b5b6b7; }
+      .form-datalist .input_error::-webkit-input-placeholder, .form-datalist .input_error--dropdown::-webkit-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }
+      .form-datalist .input_error::-moz-placeholder, .form-datalist .input_error--dropdown::-moz-placeholder {
+        font-weight: 500;
+        color: #999ea8; }
+      .form-datalist .input_error:-ms-input-placeholder, .form-datalist .input_error--dropdown:-ms-input-placeholder {
+        font-weight: 500;
+        color: rgba(153, 158, 168, 0.5); }
+    .form-datalist .input_error--dropdown.value {
+      border: 1px solid #b5b6b7; }
+    .form-datalist .input_error--dropdown.placeholder {
+      border: 1px solid #d53354 !important; }
+      .form-datalist .input_error--dropdown.placeholder:focus {
+        border: 1px solid #0075c6 !important; }
+  .form-datalist .list {
+    position: absolute;
+    z-index: 100;
+    list-style-type: none;
+    background-color: #fff;
+    width: 240px;
+    border: 1px solid #0075c6; }
+  .form-datalist .suggestion {
+    width: 100%;
+    padding-left: 8px;
+    background-color: #fff; }
+    .form-datalist .suggestion:hover {
+      background-color: #0075c6;
+      color: #fff; }

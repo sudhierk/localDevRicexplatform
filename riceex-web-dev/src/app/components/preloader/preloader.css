@@ -1,0 +1,140 @@
+@import url(preloader-swirl.css);
+@import url(preloader-pulse.css);
+@import url(preloader-spin.css);
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  color: #fff; }
+  .preloader .dots__item {
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%; }
+    .preloader .dots__item:not(:last-child) {
+      margin-right: 0.5rem; }
+    .preloader .dots__item:nth-child(1) {
+      animation: light 0.8s ease infinite; }
+    .preloader .dots__item:nth-child(2) {
+      animation: light 0.8s ease 0.2s infinite; }
+    .preloader .dots__item:nth-child(3) {
+      animation: light 0.8s ease 0.4s infinite; }
+    .preloader .dots__item--black {
+      background: rgba(0, 0, 0, 0); }
+      .preloader .dots__item--black:nth-child(1) {
+        animation: light-black 0.8s ease infinite; }
+      .preloader .dots__item--black:nth-child(2) {
+        animation: light-black 0.8s ease 0.2s infinite; }
+      .preloader .dots__item--black:nth-child(3) {
+        animation: light-black 0.8s ease 0.4s infinite; }
+  .preloader--overflow {
+    transition: background-color 0.5s ease;
+    background-color: rgba(128, 128, 128, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100; }
+  .preloader--inline {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; }
+    .preloader--inline .lds-ring {
+      margin-left: 0.5rem;
+      display: inline-block;
+      position: relative;
+      width: 23px;
+      height: 23px; }
+      .preloader--inline .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 23px;
+        height: 23px;
+        border: 2px solid #00d9ff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #d3d4d8 transparent transparent transparent; }
+        .preloader--inline .lds-ring div:nth-child(1) {
+          animation-delay: -0.45s; }
+        .preloader--inline .lds-ring div:nth-child(2) {
+          animation-delay: -0.3s; }
+        .preloader--inline .lds-ring div:nth-child(3) {
+          animation-delay: -0.15s; }
+  .preloader--swirl {
+    padding: 0.5rem; }
+  .preloader__absolute {
+    position: absolute;
+    top: 5px;
+    left: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: 15000; }
+    .preloader__absolute .dots {
+      position: absolute;
+      top: 55%;
+      right: 30px;
+      display: flex; }
+      .preloader__absolute .dots__item {
+        height: 7px;
+        width: 7px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0); }
+        .preloader__absolute .dots__item:not(:last-child) {
+          margin-right: .2rem; }
+        .preloader__absolute .dots__item:nth-child(1) {
+          animation: light-black 0.8s ease infinite; }
+        .preloader__absolute .dots__item:nth-child(2) {
+          animation: light-black 0.8s ease 0.2s infinite; }
+        .preloader__absolute .dots__item:nth-child(3) {
+          animation: light-black 0.8s ease 0.4s infinite; }
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes light {
+  0% {
+    background: rgba(255, 255, 255, 0.7); }
+  20% {
+    background: white; }
+  100% {
+    background: rgba(255, 255, 255, 0.7); } }
+
+@keyframes light-black {
+  0% {
+    background: rgba(0, 0, 0, 0.1); }
+  20% {
+    background: rgba(0, 0, 0, 0.3); }
+  100% {
+    background: rgba(0, 0, 0, 0.1); } }
+
+@keyframes bg-flow {
+  0% {
+    background-position: 100%; }
+  100% {
+    background-position: -190%; } }
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0px); }
+  20% {
+    transform: translateY(8px); }
+  100% {
+    transform: translateY(0px); } }

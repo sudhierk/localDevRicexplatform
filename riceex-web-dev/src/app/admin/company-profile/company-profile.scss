@@ -1,0 +1,89 @@
+@import "../../../static/style/variables";
+
+.company-profile {
+  padding: 79px 48px 44px;
+  min-height: calc(100vh - 69px);
+
+  &__error {
+    color: $danger;
+  }
+
+  &__try-again {
+    color: $link;
+    cursor: pointer;
+    &:hover {
+      color: $link-hover;
+    }
+  }
+
+  &__back {
+    position: relative;
+    padding-left: 20px;
+    margin: 25px 0;
+    color: $link;
+    font-weight: 500;
+    font-size: 18px;
+    transition: color .25s;
+    cursor: pointer;
+    &:hover {
+      color: $link-hover;
+      &::before {
+        color: $link-hover;
+      }
+    }
+    &:before {
+      content: "";
+      transition: color .25s;
+      position: absolute;
+      left: 0px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-top: 3px solid #0c8ae4;
+      border-left: 3px solid #0c8ae4;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__tabs {
+    display: flex;
+  }
+
+  &__tab {
+    position: relative;
+    padding: 12px 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #354052;
+    font-weight: 500;
+    border-top: 2px solid transparent;
+    background-color: #e7e8eb;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    @media (max-width: 420px) {
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      height: calc(100% - 8px);
+      width: 1px;
+      background-color: #c3c6cc;
+    }
+    &.active,
+    &:hover {
+      border-top: 2px solid #0064a9;
+      background-color: #fff;
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

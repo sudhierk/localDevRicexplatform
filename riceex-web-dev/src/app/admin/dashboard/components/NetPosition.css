@@ -1,0 +1,140 @@
+.netposition .net-top {
+  display: flex;
+  margin-bottom: 40px; }
+  @media (min-width: 992px) and (max-width: 1400px) {
+    .netposition .net-top {
+      justify-content: space-between; } }
+  @media (max-width: 410px) {
+    .netposition .net-top {
+      justify-content: space-between; } }
+
+.netposition .net-wrapper {
+  display: flex;
+  margin-right: 50px; }
+  @media (min-width: 992px) and (max-width: 1400px) {
+    .netposition .net-wrapper {
+      margin-right: 0; } }
+  @media (min-width: 992px) and (max-width: 1260px) {
+    .netposition .net-wrapper {
+      flex-direction: column; } }
+  @media (max-width: 360px) {
+    .netposition .net-wrapper {
+      flex-direction: column; } }
+  @media (max-width: 410px) {
+    .netposition .net-wrapper {
+      margin-right: 0; } }
+
+.netposition .net-left {
+  margin-right: 20px;
+  font-size: 40px;
+  font-weight: 400;
+  color: #354052; }
+
+.netposition .net-right {
+  padding-top: 12px; }
+
+.netposition .dynamics {
+  position: relative;
+  font-size: 14px;
+  color: #7f8fa4; }
+  .netposition .dynamics:before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 12px;
+    left: 2px;
+    top: 2px; }
+  .netposition .dynamics.positive {
+    padding-left: 10px; }
+    .netposition .dynamics.positive:before {
+      background-color: #68d7b5; }
+    .netposition .dynamics.positive:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 5px;
+      height: 5px;
+      border-top: 1px solid #68d7b5;
+      border-right: 1px solid #68d7b5;
+      transform: rotate(-45deg); }
+  .netposition .dynamics.negative {
+    padding-left: 10px; }
+    .netposition .dynamics.negative:before {
+      background-color: #eb6881; }
+    .netposition .dynamics.negative:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-bottom: 1px solid #eb6881;
+      border-left: 1px solid #eb6881;
+      transform: rotate(-45deg); }
+
+.netposition .hint {
+  margin-top: -4px;
+  font-size: 14px;
+  color: #7f8fa4; }
+
+.netposition .net-view {
+  position: relative;
+  margin-top: 10px;
+  padding-right: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+  cursor: pointer; }
+  .netposition .net-view:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #0c8ae4;
+    border-right: 2px solid #0c8ae4;
+    transform: rotate(45deg); }
+
+.netposition .net-chart-wrapper {
+  display: flex;
+  margin-bottom: 30px; }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .netposition .net-chart-wrapper {
+      flex-direction: column; } }
+
+.netposition .net-stats {
+  width: 220px; }
+
+.netposition .net-sell {
+  position: relative;
+  padding-left: 31px; }
+  .netposition .net-sell:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #ff6b83; }
+
+.netposition .net-buy {
+  position: relative;
+  padding-left: 31px; }
+  .netposition .net-buy:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #1292ec; }
+
+.netposition .net-chart {
+  width: 120px;
+  height: 120px; }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    .netposition .net-chart {
+      margin: 20px auto 0; } }

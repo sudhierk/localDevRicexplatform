@@ -1,0 +1,369 @@
+.request-dtls {
+  min-height: calc(100vh - 138px);
+  padding: 79px 48px 60px;
+  background-color: #f6f6f8; }
+  @media (max-width: 991px) {
+    .request-dtls {
+      padding-top: 60px; } }
+  @media (max-width: 575px) {
+    .request-dtls {
+      padding: 60px 0 40px; } }
+  .request-dtls .btn-sendmessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    padding: 2px 8px;
+    border: 2px solid #1990ea;
+    border-radius: 4px;
+    color: #0c88e0;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 92px;
+    height: 36px; }
+    .request-dtls .btn-sendmessage[disabled] {
+      background-color: #f9f9f9;
+      font-size: 14px;
+      font-weight: 600;
+      color: #7f8fa4;
+      cursor: progress;
+      border: 1px solid #ced0da; }
+  .request-dtls .txtarea {
+    border-radius: 3px;
+    height: 36px;
+    border: 1px solid #dfe3e9; }
+  .request-dtls__status-block {
+    padding: 10px 35px;
+    background-color: #fff; }
+  .request-dtls__id {
+    margin-left: 15px;
+    padding-top: 10px;
+    color: #354052;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase; }
+  .request-dtls__date {
+    padding-top: 11px;
+    margin-left: 15px;
+    color: #7f8fa4;
+    font-size: 14px; }
+    @media (max-width: 470px) {
+      .request-dtls__date {
+        order: 12;
+        width: 100%; } }
+    .request-dtls__date .status {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 500;
+      margin-left: 1rem; }
+      @media (max-width: 360px) {
+        .request-dtls__date .status {
+          display: flex;
+          margin-left: 0; } }
+      .request-dtls__date .status--NEW span {
+        background-color: #36af47; }
+      .request-dtls__date .status--DEAL span {
+        background-color: #1991eb; }
+      .request-dtls__date .status--DECLINED span {
+        background-color: #c1c9d3; }
+      .request-dtls__date .status--CANCELED span {
+        background-color: #c1c9d3; }
+      .request-dtls__date .status span {
+        display: inline-block;
+        text-align: center;
+        padding: 0.1rem 0.25rem;
+        line-height: 20px;
+        color: white;
+        border-radius: 3px;
+        font-size: 10px;
+        margin-left: 0.5rem; }
+  .request-dtls__status {
+    padding-top: 9px;
+    margin-left: 15px;
+    color: #7f8fa4; }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .request-dtls__status {
+        width: 100%;
+        order: 13; } }
+    @media (max-width: 660px) {
+      .request-dtls__status {
+        order: 13;
+        width: 100%; } }
+    .request-dtls__status:after {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 3px 5px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 10px;
+      text-transform: uppercase; }
+    .request-dtls__status_new:after {
+      content: "New";
+      background-color: #36af47; }
+    .request-dtls__status_deal:after {
+      content: "Deal";
+      background-color: #1991eb; }
+    .request-dtls__status_declined:after {
+      content: "Declined";
+      background-color: #c2cad4; }
+  .request-dtls__price {
+    font-size: 30px;
+    color: #7f8fa4; }
+    .request-dtls__price:before {
+      content: "Price";
+      display: inline-block;
+      margin-right: 6px;
+      color: #7f8fa4;
+      font-size: 16px;
+      transform: translateY(-6px); }
+  .request-dtls__buyer {
+    color: #354052;
+    font-size: 16px; }
+    .request-dtls__buyer:before {
+      content: "Buyer";
+      color: #7f8fa4;
+      margin-right: 14px; }
+    .request-dtls__buyer .country-tax {
+      color: #7f8fa4; }
+  .request-dtls__seller {
+    color: #354052;
+    font-size: 16px; }
+    @media (max-width: 640px) {
+      .request-dtls__seller {
+        margin-bottom: 1rem; } }
+    .request-dtls__seller:before {
+      content: "Seller";
+      color: #7f8fa4;
+      margin-right: 14px; }
+    .request-dtls__seller .country-tax {
+      color: #7f8fa4; }
+  .request-dtls__buttons-wrapper {
+    display: flex;
+    margin-right: -15px;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center; }
+  .request-dtls__button {
+    width: 154px;
+    height: 36px;
+    -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    border: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s; }
+    .request-dtls__button:hover {
+      opacity: 0.85; }
+    .request-dtls__button:focus {
+      outline: none; }
+    .request-dtls__button:active {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15); }
+    .request-dtls__button_accept {
+      background: linear-gradient(to bottom, #0c8be6, #0c7ac9); }
+    .request-dtls__button_counter {
+      color: #0c7ac9;
+      margin-left: 12px;
+      border: 1px solid #0c7ac9; }
+    .request-dtls__button_decline {
+      background-color: #c2cbd4;
+      margin-left: 12px; }
+    .request-dtls__button_cancel {
+      background-color: #e7090c;
+      margin-left: 12px; }
+  .request-dtls__props {
+    background-color: #fff;
+    padding: 35px 50px; }
+    @media (max-width: 575px) {
+      .request-dtls__props {
+        padding: 35px 35px; } }
+  .request-dtls__prop {
+    display: flex;
+    min-height: 40px;
+    height: 100%;
+    width: 100%; }
+    @media (max-width: 680px) {
+      .request-dtls__prop {
+        height: 48px; } }
+    @media (max-width: 360px) {
+      .request-dtls__prop {
+        height: 52px; } }
+  .request-dtls__key {
+    width: 50%;
+    color: #7f8fa4;
+    font-size: 16px; }
+    @media (max-width: 575px) {
+      .request-dtls__key {
+        line-height: 16px; } }
+  .request-dtls__value {
+    width: 50%;
+    color: #354052;
+    font-size: 16px; }
+    @media (max-width: 680px) {
+      .request-dtls__value {
+        line-height: 16px; } }
+  .request-dtls .comments {
+    overflow: hidden; }
+  .request-dtls__comments-wrapper {
+    min-height: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: #fff;
+    padding: 15px 25px 100px; }
+    @media (max-width: 13017px) {
+      .request-dtls__comments-wrapper {
+        max-height: 761px;
+        overflow: hidden;
+        overflow-y: scroll; } }
+    @media (max-width: 1318px) {
+      .request-dtls__comments-wrapper {
+        max-height: 761px; } }
+    @media (max-width: 1199px) {
+      .request-dtls__comments-wrapper {
+        max-height: 791px; } }
+  .request-dtls__comment-writing {
+    background: #fff;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; }
+  .request-dtls__comment-heading {
+    color: #7f8fa4;
+    font-size: 16px;
+    font-weight: 500; }
+  .request-dtls__comment-area {
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 15px;
+    color: #354052;
+    border: 1px solid #dfe3e9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    transition: border 0.2s; }
+    .request-dtls__comment-area:hover {
+      border: 1px solid #737373; }
+    .request-dtls__comment-area:focus {
+      border: 1px solid #0075c6;
+      outline: none; }
+  .request-dtls__comment-send {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    height: 36px;
+    width: 92px;
+    border: 2px solid #1990ea;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #0c88e0;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer; }
+    .request-dtls__comment-send[disabled] {
+      background-color: #f9f9f9;
+      font-size: 14px;
+      font-weight: 600;
+      color: #7f8fa4;
+      cursor: progress;
+      border: 1px solid #ced0da; }
+  .request-dtls__comment {
+    position: relative;
+    margin-top: 20px;
+    padding: 15px 0 0;
+    border-top: 1px solid #f5f5f5; }
+    .request-dtls__comment-text {
+      width: 100%;
+      overflow-wrap: break-word; }
+  .request-dtls__comment-author {
+    margin-right: 6px;
+    color: #354052;
+    font-size: 14px;
+    font-weight: 500; }
+  .request-dtls__comment-time {
+    color: #7f8fa4;
+    font-size: 14px; }
+    @media (max-width: 400px) {
+      .request-dtls__comment-time {
+        display: block; } }
+  .request-dtls__reply-button {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #0c8ae4;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-transition: all 0.15s;
+    -moz-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    transition: all 0.15s; }
+    @media (max-width: 1199px) {
+      .request-dtls__reply-button {
+        top: 5px; } }
+    @media (max-width: 450px) {
+      .request-dtls__reply-button {
+        right: 5px; } }
+    @media (max-width: 360px) {
+      .request-dtls__reply-button {
+        right: -10px; } }
+    .request-dtls__reply-button:hover {
+      opacity: 0.85; }
+  .request-dtls__comment-text {
+    font-size: 14px;
+    color: #354052;
+    margin-bottom: 0; }
+  .request-dtls__reply {
+    position: relative;
+    margin-top: 0.5rem;
+    padding-left: 2rem; }
+    @media (max-width: 575px) {
+      .request-dtls__reply {
+        padding-left: 0.5rem;
+        border-left: 2px solid #0c8ae4; } }
+    .request-dtls__reply .request-dtls__reply-button {
+      top: 0; }
+  .request-dtls__back {
+    position: relative;
+    padding-left: 35px;
+    color: #0c8ae4;
+    font-weight: 500;
+    font-size: 18px;
+    transition: color .25s;
+    cursor: pointer; }
+    .request-dtls__back:hover {
+      color: #179af8; }
+      .request-dtls__back:hover::before {
+        color: #179af8; }
+    .request-dtls__back:before {
+      content: "";
+      transition: color .25s;
+      position: absolute;
+      left: 18px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-top: 3px solid #0c8ae4;
+      border-left: 3px solid #0c8ae4;
+      transform: rotate(-45deg); }
+  .request-dtls__edit {
+    padding-right: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #0c8ae4; }
+    .request-dtls__edit:hover {
+      cursor: pointer; }

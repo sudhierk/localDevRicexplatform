@@ -1,0 +1,147 @@
+image: docker:git
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  HYPERLEDGER_API: gitlab-ci.testserver.kiev.ua:5555/riceexchangeplatform/hyperledger:$CI_PIPELINE_ID.$CI_COMMIT_REF_NAME
+  HL_DEV_IP: 178.62.254.246
+  HL_STAGE: 134.209.89.171
+  HL_SANDBOX: 34.207.162.139
+  API_ENV: -e COMPOSER_WEBSOCKETS=true -e COMPOSER_DATASOURCES="{ \"db\":{ \"name\":\"db\",\"connector\":\"mongodb\",\"port\":\"27017\",\"host\":\"178.62.254.246\",\"username\":\"admin\",\"password\":\"wdjwH7NOTbk3olklKiU1wdjwH7\"}}" -e COMPOSER_CARD=admin@ricex-network -e COMPOSER_NAMESPACES=never -e COMPOSER_AUTHENTICATION=true -e COMPOSER_MULTIUSER=true -e COMPOSER_PROVIDERS="${COMPOSER_PROVIDERS}"
+  API_ENV_STAGE: -e COMPOSER_WEBSOCKETS=true -e COMPOSER_DATASOURCES="{ \"db\":{ \"name\":\"db\",\"connector\":\"mongodb\",\"port\":\"27017\",\"host\":\"134.209.89.171\",\"username\":\"admin\",\"password\":\"wdjwH7NOTbk3olklKiU1wdjwH7\"}}" -e COMPOSER_CARD=admin@ricex-network -e COMPOSER_NAMESPACES=never -e COMPOSER_AUTHENTICATION=true -e COMPOSER_MULTIUSER=true -e COMPOSER_PROVIDERS="${COMPOSER_PROVIDERS}"
+  API_ENV_SANDBOX: -e COMPOSER_WEBSOCKETS=true -e COMPOSER_DATASOURCES="{ \"db\":{ \"name\":\"db\",\"connector\":\"mongodb\",\"port\":\"27017\",\"host\":\"34.207.162.139\",\"username\":\"admin\",\"password\":\"wdjwH7NOTbk3olklKiU1wdjwH7\"}}" -e COMPOSER_CARD=admin@ricex-network -e COMPOSER_NAMESPACES=never -e COMPOSER_AUTHENTICATION=true -e COMPOSER_MULTIUSER=true -e COMPOSER_PROVIDERS="${COMPOSER_PROVIDERS}"
+  NETWORK_VERSION: 0.0.$CI_PIPELINE_ID
+
+build:
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555
+  only:
+    - stage
+    - dev
+    - sandbox
+  script:
+    - docker build . -f ./ricex-api/Dockerfile -t $HYPERLEDGER_API
+    - docker push $HYPERLEDGER_API
+
+before_script:
+  # install ssh-agent
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+  # run ssh-agent
+  - eval $(ssh-agent -s)
+
+  #copy key to file
+  - echo "$RICEX_KEY" > ./key.file
+  - chmod 400 ./key.file
+
+  # add ssh key stored in RICEX_KEY variable to the agent store
+  - ssh-add ./key.file
+
+  # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+  # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555
+
+deploy-mongo-dev:
+  stage: deploy
+  environment:
+    name: dev
+  when: manual
+  tags:
+    - docker
+  only:
+    - dev
+  script:
+    docker run -d --name mongo -p 27017:27017 -v /home/ricex/data/mongo:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=wdjwH7NOTbk3olklKiU1wdjwH7 mongo
+
+deploy-network-dev:
+  stage: deploy
+  environment:
+    name: dev
+  when: manual
+  tags:
+    - docker
+  only:
+    - dev
+  script:
+    - ssh ricex@$HL_DEV_IP "composer card list"
+    - ssh ricex@$HL_DEV_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $HYPERLEDGER_API"
+    - ssh ricex@$HL_DEV_IP "rm -rf ~/tmp/ricex-network && mkdir -p ~/tmp/ricex-network"
+    - scp -r $CI_PROJECT_DIR/ricex-network ricex@$HL_DEV_IP:~/tmp
+    - ssh ricex@$HL_DEV_IP "cd ~/tmp/ricex-network && npm version $NETWORK_VERSION && composer archive create -t dir -n ~/tmp/ricex-network -a ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_DEV_IP "composer network install -c root@ricex-network -a ~/tmp/ricex-network/ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_DEV_IP "composer network upgrade --networkName ricex-network --networkVersion $NETWORK_VERSION -c root@ricex-network"
+    - ssh ricex@$HL_DEV_IP "(docker stop h-api || true) && (docker rm h-api || true)"
+    - ssh ricex@$HL_DEV_IP "docker run -d -p 3080:3000 --name h-api --user $(id -u) $API_ENV -v ~/.composer:/root/.composer $HYPERLEDGER_API"
+
+deploy-mongo-stage:
+  stage: deploy
+  environment:
+    name: stage
+  when: manual
+  tags:
+    - docker
+  only:
+    - stage
+  script:
+    docker run -d --name mongo -p 27017:27017 -v /home/ricex/data/mongo:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=wdjwH7NOTbk3olklKiU1wdjwH7 mongo
+
+deploy-network-stage:
+  stage: deploy
+  environment:
+    name: stage
+  when: manual
+  tags:
+    - docker
+  only:
+    - stage
+  script:
+    - ssh ricex@$HL_STAGE "composer card list"
+    - ssh ricex@$HL_STAGE "rm -rf ~/tmp/ricex-network && mkdir -p ~/tmp/ricex-network"
+    - scp -r $CI_PROJECT_DIR/ricex-network ricex@$HL_STAGE:~/tmp
+    - ssh ricex@$HL_STAGE "cd ~/tmp/ricex-network && npm version $NETWORK_VERSION && composer archive create -t dir -n ~/tmp/ricex-network -a ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_STAGE "composer network install -c root@ricex-network -a ~/tmp/ricex-network/ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_STAGE "composer network upgrade --networkName ricex-network --networkVersion $NETWORK_VERSION -c  root@ricex-network"
+    - ssh ricex@$HL_STAGE "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $HYPERLEDGER_API"
+    - ssh ricex@$HL_STAGE "(docker stop h-api || true) && (docker rm h-api || true)"
+    - ssh ricex@$HL_STAGE "docker run -d -p 3080:3000 --name h-api --user $(id -u) $API_ENV_STAGE -v ~/.composer:/root/.composer $HYPERLEDGER_API"
+
+deploy-mongo-stage:
+  stage: deploy
+  environment:
+    name: stage
+  when: manual
+  tags:
+    - docker
+  only:
+    - sandbox
+  script:
+    docker run -d --name mongo -p 27017:27017 -v /home/ricex/data/mongo:/data/db -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=wdjwH7NOTbk3olklKiU1wdjwH7 mongo
+
+deploy-network-stage:
+  stage: deploy
+  environment:
+    name: sandbox
+  when: manual
+  tags:
+    - docker
+  only:
+    - sandbox
+  script:
+    - ssh ricex@$HL_SANDBOX "composer card list"
+    - ssh ricex@$HL_SANDBOX "rm -rf ~/tmp/ricex-network && mkdir -p ~/tmp/ricex-network"
+    - scp -r $CI_PROJECT_DIR/ricex-network ricex@$HL_SANDBOX:~/tmp
+    - ssh ricex@$HL_SANDBOX "cd ~/tmp/ricex-network && npm version $NETWORK_VERSION && composer archive create -t dir -n ~/tmp/ricex-network -a ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_SANDBOX "composer network install -c root@ricex-network -a ~/tmp/ricex-network/ricex-network@$NETWORK_VERSION.bna"
+    - ssh ricex@$HL_SANDBOX "composer network upgrade --networkName ricex-network --networkVersion $NETWORK_VERSION -c  root@ricex-network"
+    - ssh ricex@$HL_SANDBOX "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $HYPERLEDGER_API"
+    - ssh ricex@$HL_SANDBOX "(docker stop h-api || true) && (docker rm h-api || true)"
+    - ssh ricex@$HL_SANDBOX "docker run -d -p 3080:3000 --name h-api --user $(id -u) $API_ENV_SANDBOX -v ~/.composer:/root/.composer $HYPERLEDGER_API"

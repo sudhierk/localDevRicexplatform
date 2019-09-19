@@ -1,0 +1,13 @@
+.profile-info {
+  background-color: #fff;
+  padding: 35px 50px; }
+  .profile-info__edit-link {
+    display: inline-block;
+    margin-left: .5rem;
+    color: #0c8ae4;
+    font-weight: 500;
+    cursor: pointer; }
+    .profile-info__edit-link svg {
+      margin-right: 5px; }
+    .profile-info__edit-link:hover {
+      color: #179af8; }

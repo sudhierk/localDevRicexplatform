@@ -1,0 +1,121 @@
+@import "../../../../static/style/variables";
+
+.profile-kyc {
+  background-color: #fff;
+  padding: 35px 50px;
+
+  &__header {
+    background-color: #eeeeef;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  &__description {
+    color: #9ca9b9;
+    font-size: 14px;
+  }
+
+  &__content {
+    margin-bottom: 1.5rem;
+  }
+
+  &__submit {
+    transition: background 0.25s, box-shadow 0.25s;
+    border-radius: 2px;
+    text-transform: capitalize;
+    box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    width: 100%;
+    margin-top: 11px;
+    background-color: #83AC18;
+    border-color: #93C01F;
+    &:hover {
+      background-color: #93C01F;
+    }
+
+    &[type=button] {
+      background-color: #0065ab;
+      border-color: #0086e4;
+      &:hover {
+        background-color: #187abe;
+      }
+    }
+
+    &:focus {
+      box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .form-input, .form-select {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 15px);
+    font-size: 14px;
+  }
+
+  fieldset[disabled] {
+    input {
+      background-color: #f9f9f9;
+      font-size: 14px;
+      font-weight: 600;
+      color: #7f8fa4;
+      cursor: not-allowed;
+    }
+    .formik-select {
+      pointer-events: none;
+      div {
+        background-color: #f9f9f9;
+        color: #7f8fa4;
+        font-weight: 600;
+      }
+    }
+    .field-array-controls {
+      display: none;
+    }
+  }
+
+  .field-array-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    button {
+      border: 1px solid;
+      font-weight: 600;
+      padding: 7px 38px;
+      border-radius: 20px;
+      transition: .3s ease;
+      background-color: transparent;
+      cursor: pointer;
+      &:last-of-type {
+        margin-left: 1rem;
+      }
+      &.add-fieldset {
+        border-color: #83AC18;
+        color: #93C01F;
+        &:hover {
+          color: #FFF;
+          background-color: #83AC18;
+        }
+      }
+      &.remove-fieldset {
+        border-color: $danger;
+        color: $danger;
+        &:hover {
+          background-color: $danger;
+          color: #FFF;
+        }
+      }
+    }
+  }
+}

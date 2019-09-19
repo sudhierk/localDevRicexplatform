@@ -1,0 +1,45 @@
+.k-spinner--swirl {
+  --spinner-color: var(--color, #0668ad);
+  --spinner-color-secondary: var(--color-secondary, #75aa4c);
+  --spinner-size: 64px;
+  display: inline-flex;
+  font-size: var(--spinner-size);
+  color: var(--spinner-color);
+  width: 1em;
+  height: 1em;
+  max-width: 1em;
+  max-height: 1em;
+  position: relative;
+  animation-duration: 2s; }
+  .k-spinner--swirl::before {
+    top: 0.05em;
+    right: 0.05em;
+    bottom: 0.05em;
+    left: 0.05em;
+    animation-duration: 3s; }
+  .k-spinner--swirl::after {
+    top: 0.135em;
+    right: 0.135em;
+    bottom: 0.135em;
+    left: 0.135em;
+    animation-duration: 1.5s; }
+
+.k-spinner--swirl, .k-spinner--swirl::before, .k-spinner--swirl::after {
+  border: .0333em solid transparent;
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation-name: k-swirl;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+.k-spinner--swirl::before, .k-spinner--swirl::after {
+  content: '';
+  position: absolute; }
+
+@keyframes k-swirl {
+  from {
+    transform: rotate(0deg); }
+  50% {
+    color: var(--spinner-color-secondary); }
+  to {
+    transform: rotate(360deg); } }

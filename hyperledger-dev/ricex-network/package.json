@@ -1,0 +1,41 @@
+{
+  "engines": {
+    "composer": "=0.19.20"
+  },
+  "name": "ricex-network",
+  "version": "0.0.1",
+  "description": "Rice Exchange Network",
+  "scripts": {
+    "prepublish": "mkdir ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/ricex-network.bna",
+    "install-card": "composer network install --card PeerAdmin@hlfv1 --archiveFile ./dist/ricex-network.bna",
+    "create-card": "composer network start --networkName ricex-network --V 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@ricex-network --file ./dist/ricex-network.card",
+    "import-card": "composer card import --file ./dist/ricex-network.card",
+    "ping-card": "composer network ping --card admin@ricex-network",
+    "update-card": "composer network upgrade -n ricex-network -c  admin@ricex-network -V 0.0.1",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "admin",
+  "email": "admin@ricex.net",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "=0.19.20",
+    "composer-cli": "=0.19.20",
+    "composer-client": "=0.19.20",
+    "composer-common": "=0.19.20",
+    "composer-connector-embedded": "=0.19.20",
+    "composer-cucumber-steps": "=0.19.20",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}

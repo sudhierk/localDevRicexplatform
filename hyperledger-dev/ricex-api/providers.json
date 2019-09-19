@@ -1,0 +1,20 @@
+{
+  "local": {
+    "provider": "local",
+    "module": "passport-local",
+    "usernameField": "username",
+    "passwordField": "password",
+    "authPath": "/auth/local",
+    "successRedirect": "/",
+    "failureRedirect": "/"
+  },
+  "jwt": {
+    "provider": "jwt",
+    "module": "/home/composer/custom-jwt.js",
+    "secretOrKey":
+      "-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMreQxUy0g3yRIJ85Bf7PEwh0J03FH95\nw4LXlYIWyNhTuZmawYq4EpLLY2oVEPJXmtcE5BUHnhh104GX5GVoroUCAwEAAQ==\n-----END PUBLIC KEY-----",
+    "authScheme": "saml",
+    "successRedirect": "/",
+    "failureRedirect": "/"
+  }
+}

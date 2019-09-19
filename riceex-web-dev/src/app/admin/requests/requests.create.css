@@ -1,0 +1,332 @@
+.create-req {
+  padding: 85px 1rem 2.625rem;
+  background-color: #f6f6f8; }
+  @media (max-width: 991px) {
+    .create-req {
+      padding-top: 66px; } }
+  .create-req__error {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 32rem;
+    padding: 10px 20px;
+    background-color: #ed1c24;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    transform: translateX(2rem); }
+    @media (max-width: 767px) {
+      .create-req__error {
+        transform: none; } }
+  .create-req__error-cls {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    transform: rotate(45deg);
+    cursor: pointer; }
+    .create-req__error-cls:after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: -6px;
+      width: 3px;
+      height: 15px;
+      background-color: #fff; }
+    .create-req__error-cls:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 3px;
+      background-color: #fff; }
+  .create-req__heading {
+    display: block;
+    padding-top: 1.5em;
+    margin-bottom: 2em;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center; }
+    .create-req__heading_sec {
+      padding-top: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+      color: #354052; }
+  .create-req .counterparty {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 25.625rem;
+    flex-wrap: wrap; }
+    .create-req .counterparty__label {
+      position: relative;
+      line-height: 30px;
+      padding: 0 1rem 0 0.8rem;
+      width: 50%;
+      height: 30px;
+      border-radius: 3px;
+      background-color: #f1f3f7;
+      border: 1px solid #d5dbe5;
+      color: #354052;
+      font-weight: 500;
+      font-size: 14px;
+      display: inline-block;
+      white-space: nowrap;
+      max-width: 134px;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      .create-req .counterparty__label__close {
+        cursor: pointer;
+        transition: color 0.1s;
+        position: absolute;
+        top: 50%;
+        right: 0.25rem;
+        transform: translateY(-50%);
+        color: #c7d1df;
+        font-size: 16px; }
+        .create-req .counterparty__label__close:hover {
+          color: #354052; }
+  .create-req__wrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: calc(50% + 16.75rem);
+    margin-right: calc(50% - 16.75rem);
+    margin-bottom: 1rem; }
+    .create-req__wrapper .label {
+      margin-right: 1.25rem;
+      margin-bottom: 0;
+      height: 34px;
+      line-height: 34px;
+      font-size: 1rem; }
+    .create-req__wrapper .form-input {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-input {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+      .create-req__wrapper .form-input .input {
+        width: 100%;
+        max-width: 25.652rem; }
+    .create-req__wrapper .form-unitsInput {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-unitsInput {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+    .create-req__wrapper .form-radio {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-radio {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+    .create-req__wrapper .form-select {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-select {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+      .create-req__wrapper .form-select .select[disabled] {
+        color: #58595a;
+        font-weight: 500;
+        cursor: not-allowed;
+        background-color: #e8e8e8; }
+    .create-req__wrapper .form-date {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-date {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+      .create-req__wrapper .form-date .date {
+        width: 100%;
+        max-width: 25.652rem; }
+        .create-req__wrapper .form-date .date .react-datepicker__input-container,
+        .create-req__wrapper .form-date .date .react-datepicker-wrapper {
+          display: inline-block;
+          width: 100%; }
+        .create-req__wrapper .form-date .date .react-datepicker__navigation--next--with-time {
+          right: 110px; }
+        .create-req__wrapper .form-date .date .react-datepicker__time-box {
+          margin: 0;
+          width: 100%; }
+        .create-req__wrapper .form-date .date .react-datepicker__time-container {
+          width: 100px; }
+        .create-req__wrapper .form-date .date .react-datepicker__time-list {
+          padding: 0 !important; }
+        .create-req__wrapper .form-date .date input[type="date"] {
+          position: relative; }
+          .create-req__wrapper .form-date .date input[type="date"]:after {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-bottom: 2px solid #acaebb;
+            border-right: 2px solid #acaebb;
+            border-top: 0;
+            border-left: 0;
+            margin-left: 0;
+            transform: translateY(-50%) rotate(45deg); }
+    .create-req__wrapper .form-group {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .form-group {
+          flex-wrap: wrap;
+          justify-content: flex-start; } }
+    .create-req__wrapper .cancel {
+      color: #0c8be6;
+      font-size: 14px;
+      text-decoration: underline;
+      text-decoration-color: rgba(12, 139, 230, 0.25);
+      font-weight: 500; }
+    @media (max-width: 767px) {
+      .create-req__wrapper {
+        width: 100%;
+        max-width: 25.625rem;
+        margin-right: auto;
+        margin-left: auto; } }
+    .create-req__wrapper_price {
+      position: relative; }
+      .create-req__wrapper_price:after {
+        content: "$";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 5rem;
+        height: 33px;
+        border-left: 1px solid #ced0da;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #354052; }
+    .create-req__wrapper_btn {
+      margin-top: 1.5rem;
+      flex-basis: 100%; }
+    .create-req__wrapper .create-req__label,
+    .create-req__wrapper .input-label {
+      display: block;
+      margin-right: 1.25rem;
+      margin-bottom: 0;
+      height: 34px;
+      color: #7f8fa4;
+      font-size: 1rem;
+      line-height: 34px; }
+      @media (max-width: 767px) {
+        .create-req__wrapper .create-req__label,
+        .create-req__wrapper .input-label {
+          flex-basis: 100%;
+          height: 26px;
+          line-height: 26px; } }
+    .create-req__wrapper input,
+    .create-req__wrapper .dropdown,
+    .create-req__wrapper .dropdown-toggle {
+      width: 100%;
+      max-width: 25.625rem;
+      background-color: #fff; }
+    .create-req__wrapper .dropdown-toggle {
+      padding-left: 1rem; }
+    .create-req__wrapper .react-autosuggest__container {
+      width: 100%;
+      max-width: 25.625rem;
+      font-size: 14px; }
+    .create-req__wrapper .react-autosuggest__suggestions-container {
+      padding: 0;
+      background: white;
+      outline: none; }
+      .create-req__wrapper .react-autosuggest__suggestions-container ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+        max-height: 120px;
+        overflow-y: scroll; }
+        .create-req__wrapper .react-autosuggest__suggestions-container ul li {
+          padding: 0.5rem 1rem; }
+          .create-req__wrapper .react-autosuggest__suggestions-container ul li .country,
+          .create-req__wrapper .react-autosuggest__suggestions-container ul li .tax-number {
+            color: #b5b6b7;
+            font-size: 0.8rem;
+            font-weight: 500; }
+    .create-req__wrapper .react-autosuggest__suggestions-list {
+      border: 1px solid #b5b6b7;
+      border-top: 0; }
+    .create-req__wrapper .react-autosuggest__input {
+      height: 34px;
+      border: 1px solid #b5b6b7;
+      border-radius: 4px;
+      padding-left: 1rem; }
+      .create-req__wrapper .react-autosuggest__input::placeholder {
+        font-size: 14px;
+        font-weight: 500;
+        color: #999ea8;
+        opacity: 0.5; }
+      .create-req__wrapper .react-autosuggest__input::-webkit-input-placeholder {
+        font-size: 14px;
+        font-weight: 500;
+        color: #999ea8;
+        opacity: 0.5; }
+      .create-req__wrapper .react-autosuggest__input:-ms-input-placeholder {
+        font-size: 14px;
+        font-weight: 500;
+        color: #999ea8;
+        opacity: 0.5; }
+    .create-req__wrapper .counterparty__error {
+      font-size: 14px;
+      color: #d53354;
+      margin-bottom: 0; }
+  .create-req__required {
+    color: #96a7bd;
+    font-size: 0.875rem;
+    margin-right: 4rem; }
+    @media (max-width: 1199px) {
+      .create-req__required {
+        margin-right: 2rem; } }
+    @media (max-width: 767px) {
+      .create-req__required {
+        margin-right: 2rem; } }
+  .create-req .btn {
+    transition: background 0.25s, box-shadow 0.25s;
+    border-radius: 2px;
+    width: 245px;
+    height: 36px;
+    text-transform: capitalize;
+    box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    border: 1px solid #0086e4;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500; }
+    .create-req .btn--blue {
+      background-color: #0065ab; }
+      .create-req .btn--blue:hover {
+        background: #187abe; }
+      .create-req .btn--blue:focus {
+        box-shadow: 1.805px 2.396px 3px rgba(0, 0, 0, 0.15); }
+      .create-req .btn--blue:active {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15); }
+  .create-req__search {
+    position: absolute;
+    bottom: calc(1rem + 10px);
+    right: 6px;
+    color: #ced0da; }
+  .create-req .react-autosuggest__input.input_error {
+    border: 1px solid #d53354 !important;
+    animation: input-error 0.7s; }

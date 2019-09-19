@@ -1,0 +1,159 @@
+image: docker:git
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  STAGE_IMAGE: gitlab-ci.testserver.kiev.ua:5555/riceexchangeplatform/riceex-backend:$CI_PIPELINE_ID.$CI_COMMIT_REF_NAME
+  DEV_IP: 178.62.254.246
+  SANDBOX_IP: 134.209.89.171
+
+
+build:
+  stage: build
+  before_script:
+      - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555
+  only:
+      - dev
+      - sandbox
+  script:
+    - docker build --pull -t $STAGE_IMAGE .
+    - docker push $STAGE_IMAGE
+
+
+deploy-db-dev:
+  stage: deploy
+  when: manual
+  environment:
+    name: dev
+  tags:
+    - docker
+  only:
+    - dev
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@$DEV_IP "(docker stop db_dev || true) && (docker rm db_dev || true)"
+    - ssh ricex@$DEV_IP "docker run -d --name db_dev -e POSTGRES_USER=riceex -e POSTGRES_DB=riceex -e POSTGRES_PASSWORD=riceex --network host postgres:9.6"
+
+deploy-dev:
+  stage: deploy
+  environment:
+    name: dev
+  tags:
+    - docker
+  only:
+    - dev
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@$DEV_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $STAGE_IMAGE"
+    - ssh ricex@$DEV_IP "(docker stop riceex-backend || true) && (docker rm riceex-backend || true)"
+    - ssh ricex@$DEV_IP "docker run --name riceex-backend -d -v /home/ricex/data/cards:/root/cards -v /home/ricex/data/docs:/root/uploads -e GIN_MODE=debug -e ENV=dev -e APP_DB=\"host=178.62.254.246 user=riceex dbname=riceex password=riceex sslmode=disable\" -e MAIL_HOST=smtp.gmail.com:587 -e MAIL_ACCOUNT=devdemo.box@gmail.com -e MAIL_FROM=riceex.test@gmail.com -e MAIL_PASSWORD=FrdheH3v7d3 -e BLOCKCHAIN_URL=http://178.62.254.246:3080 -e SENDGRID_API_KEY=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 -e WEB_URL=http://riceexchangeplatform-dev.testserver.kiev.ua  -e KEY_PATH=keys --network host $STAGE_IMAGE"
+
+deploy-db-sandbox:
+  stage: deploy
+  when: manual
+  environment:
+    name: sandbox
+  tags:
+    - docker
+  only:
+    - sandbox
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@SANDBOX_IP "(docker stop db_dev || true) && (docker rm db_dev || true)"
+    - ssh ricex@SANDBOX_IP "docker run -d --name db_dev -e POSTGRES_USER=riceex -e POSTGRES_DB=riceex -e POSTGRES_PASSWORD=riceex --network host postgres:9.6"
+
+deploy-sandbox:
+  stage: deploy
+  environment:
+    name: sandbox
+  tags:
+    - docker
+  only:
+    - sandbox
+  before_script:
+    # install ssh-agent
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    # run ssh-agent
+    - eval $(ssh-agent -s)
+
+    #copy key to file
+    - echo "$RICEX_KEY" > ./key.file
+    - chmod 400 ./key.file
+
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add ./key.file
+
+    # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+    # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-keyscan -t rsa testserver.kiev.ua >> ~/.ssh/known_hosts
+
+  script:
+    - ssh ricex@$SANDBOX_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-ci.testserver.kiev.ua:5555 && docker pull $STAGE_IMAGE"
+    - ssh ricex@$SANDBOX_IP "(docker stop riceex-backend || true) && (docker rm riceex-backend || true)"
+    - ssh ricex@$SANDBOX_IP "docker run --name riceex-backend -d -v /etc/nginx/ssl:/keys -v /home/ricex/data/cards:/root/cards -v /home/ricex/data/docs:/root/uploads -e GIN_MODE=debug -e ENV=sandbox -e APP_DB=\"host=134.209.89.171 user=riceex dbname=riceex password=riceex sslmode=disable\" -e MAIL_HOST=smtp.gmail.com:587 -e MAIL_ACCOUNT=devdemo.box@gmail.com -e MAIL_FROM=customersupport@ricex.io -e MAIL_PASSWORD=FrdheH3v7d3 -e BLOCKCHAIN_URL=http://134.209.89.171:3080 -e SENDGRID_API_KEY=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 -e WEB_URL=https://testnet.ricex.io  -e KEY_PATH=keys --network host --log-driver syslog --log-opt syslog-facility=local7 --log-opt tag=riceex-backend $STAGE_IMAGE"

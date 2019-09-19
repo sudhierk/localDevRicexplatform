@@ -1,0 +1,11 @@
+/**
+ * New query file
+
+
+query selectAllTradeActionsById {
+    description: "Select all trade actions by id"
+    statement:
+        SELECT org.ricex.net.History
+            WHERE (tradeId==_$tradeId)
+}
+ */

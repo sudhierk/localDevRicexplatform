@@ -1,0 +1,18 @@
+.generate-keys {
+  .forgot-text {
+    text-align: center;
+    color: #9299a4;
+    font-weight: 500;
+    margin-bottom: 50px;
+  }
+  &__icon {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    svg {
+      fill: #9299a4;
+      width: 35px;
+      height: 35px;
+    }
+  }
+}

@@ -1,0 +1,185 @@
+namespace org.ricex.net
+
+enum TradeType {
+  o BUY
+  o SELL
+}
+enum TradeState {
+  o DEAL
+  o SIGNED
+  o VESSEL_NOMINATED
+  o INSTRUCTIONS
+  o ADVICE
+  o DOCUMENTS
+  o PAYMENT
+  o PAYED
+  o CLOSED
+}
+
+participant Company identified by companyId {
+  o String companyId
+  o String name
+}
+
+asset Trade identified by tradeId {
+  o String tradeId
+  o String requestType
+  o String validTime
+  o TradeState state
+  o String incoterm
+
+  o DateTime Completion         optional
+  o Boolean closedOwner         optional
+  o Boolean closedCounterparty  optional
+
+  o Boolean contractCreated default=false
+
+  o Boolean signOwner  default=false
+  o Boolean signCounterparty  default=false
+
+  o Boolean vesselNominated  default=false
+  o Boolean vesselAccepted  default=false
+
+  o Boolean invoice       default=false
+  o Boolean shippingAdvice  default=false
+
+  --> Company owner
+  --> Company counterparty
+}
+
+asset Shipment identified by shipmentId {
+  o String shipmentId
+  o String tradeId
+  o String amount
+
+  o Boolean billID          default=false
+  o Boolean qualityCertID   default=false
+  o Boolean qualAppCertID   default=false
+  o Boolean weightCertID    default=false
+  o Boolean packCertID      default=false
+  o Boolean fumigCertID     default=false
+  o Boolean phytoCertID     default=false
+  o Boolean gmoCertID       default=false
+  o Boolean exportDecID     default=false
+  o Boolean insurCertID     default=false
+}
+
+asset Document identified by documentId {
+  o String documentId
+  o String shipmentId
+  o String type
+  o String sha256
+}
+
+transaction txCreate{
+  o String author
+  o String tradeId
+  o String requestType
+  o String validTime
+  o String incoterm
+  --> Company owner
+  --> Company counterparty
+}
+
+transaction txSign{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txVessel{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txRejectVessel{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txCreateShipments{
+  o String author
+  o String shipments
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txUploadDocument{
+  o String documentId
+  o String type
+  o String sha256
+  o String author
+  --> Company participant
+  --> Shipment shipment
+  --> Trade trade
+}
+
+transaction txApproveDocument{
+  o String documentId
+  o String type
+  o String author
+  --> Company participant
+  --> Shipment shipment
+  --> Trade trade
+}
+
+transaction txRejectDocument{
+  o String documentId
+  o String type
+  o String author
+  --> Company participant
+  --> Shipment shipment
+  --> Trade trade
+}
+
+transaction txReleaseForBuyerDocument{
+o String documentId
+o String type
+o String author
+--> Company participant
+--> Shipment shipment
+--> Trade trade
+}
+
+transaction txConfirmDocument{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txAdvice{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txPayment{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txAcceptPayment{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+transaction txClose{
+  o String author
+  --> Company participant
+  --> Trade trade
+}
+
+
+asset History identified by transactionId{
+  o String transactionId
+  o DateTime date
+  o String comment
+  o String author
+  o String trade
+  o String company
+  o String companyName
+}
