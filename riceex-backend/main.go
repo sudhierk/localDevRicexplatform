@@ -23,7 +23,7 @@ func init() {
 		log.SetLevel(log.DebugLevel)
 	}
 	if os.Getenv("ENV") == constants.ENV_STAGE {
-		log.SetLevel(log.DebugLevel)
+		log.SetLevel(log.InfoLevel)
 	}
 }
 

@@ -1,4 +1,4 @@
-source ~/.profile
+2rvsource ~/.profile
 
 Install necessary packages/ go binaries
 -------------------------------------

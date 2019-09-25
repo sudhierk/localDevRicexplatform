@@ -11,6 +11,7 @@ import (
 	"encoding/pem"
 
 	"strconv"
+	"fmt"
 
 	"os"
 
@@ -390,6 +391,8 @@ func (a *accountApi) verifyCode(ctx *gin.Context) {
 		"code": code,
 	})
 
+	fmt.Println("verify code started")
+
 	contextLogger.Debug("verifyCode pswd:", req.Password)
 	contextLogger.Debug("verifyCode pubkey:", req.PublicKey)
 
@@ -398,6 +401,7 @@ func (a *accountApi) verifyCode(ctx *gin.Context) {
 		return
 	}
 
+	fmt.Println("verify code successful: user update started.")
 	contextLogger.Info("user:", user.Email)
 	tx := db.Connection.Begin()
 	defer tx.Commit()
@@ -418,45 +422,53 @@ func (a *accountApi) verifyCode(ctx *gin.Context) {
 		user.PublicKey = req.PublicKey
 	}
 	err = db.UserModel(tx).Save(user)
+	fmt.Println("public key updated in database: started with company model update")
 
 	if HandleError(ctx, err, contextLogger, "") {
 		tx.Rollback()
 		return
 	}
+	fmt.Println("jwt token creation")
+	company, err := db.CompanyModel(nil).Get(user.CompanyID)
+	if HandleError(ctx, err, contextLogger, "") {
+		tx.Rollback()
+		return
+	}
 
-	// company, err := db.CompanyModel(nil).Get(user.CompanyID)
-	// if HandleError(ctx, err, contextLogger, "") {
-	// 	tx.Rollback()
-	// 	return
-	// }
+	if os.Getenv("ENV") != ENV_TEST {
+		if company.Identity == "" {
+			fmt.Println("register company composer netowrk")
 
-	// if os.Getenv("ENV") != ENV_TEST {
-	// 	if company.Identity == "" {
+			card, err := a.hl.RegisterCompany(company.ID, company.Name)
+			if HandleError(ctx, err, contextLogger, "") {
+				tx.Rollback()
+				return
+			}
+			fmt.Println("register company composer netowrk successful")
 
-	// 		card, err := a.hl.RegisterCompany(company.ID, company.Name)
-	// 		if HandleError(ctx, err, contextLogger, "") {
-	// 			tx.Rollback()
-	// 			return
-	// 		}
+			company.Identity = string(company.ID)
+			company.Card = card
 
-	// 		company.Identity = string(company.ID)
-	// 		company.Card = card
+			if err = db.CompanyModel(nil).Save(company); err != nil {
+				tx.Rollback()
+				HandleError(ctx, err, contextLogger, "")
+				return
+			}
+			contextLogger.Info("company identity saved", user.Email)
+		}
+	}
 
-	// 		if err = db.CompanyModel(nil).Save(company); err != nil {
-	// 			tx.Rollback()
-	// 			HandleError(ctx, err, contextLogger, "")
-	// 			return
-	// 		}
-	// 		contextLogger.Info("company identity saved", user.Email)
-	// 	}
-	// }
+	fmt.Println("jwt token creation")
 
 	token, _ := jwtApiKeys.ApiKeys.CreateToken(user, user.CompanyID)
 	ctx.JSON(http.StatusOK, gin.H{
 		"token": token,
 		"id":    user.ID,
 	})
+	fmt.Println("after jwt token creation")
 	tx.Commit()
+	fmt.Println("transaction commited")
+
 	return
 }
 

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -104,10 +105,11 @@ func (a *kycApi) visitKyc(ctx *gin.Context) {
 	} else if err != nil {
 		kyc = a.createNewKYC(ctx)
 	}
-
+fmt.Println("kyc data ",kyc,)
 	contextLogger := log.WithFields(log.Fields{
 		"api":  "Visit KYC",
 		"user": user.ID,
+		"JOSN Body" : kyc,
 	})
 
 	kyc.VisitedByPlatformAdmin = true
@@ -227,7 +229,7 @@ func (a *kycApi) save(ctx *gin.Context) {
 		"user":       user.ID,
 		"KYC status": constants.KYC_STATUS_SUBMITTED,
 	})
-
+    fmt.Println("CHECK THE BODY DATA",user)
 	err = a.saveWithStatus(ctx, constants.KYC_STATUS_SUBMITTED, *user)
 	if HandleError(ctx, err, contextLogger, "") {
 		return
@@ -256,8 +258,9 @@ func (a *kycApi) editing(ctx *gin.Context) {
 		"api":        "Save KYC",
 		"user":       user.ID,
 		"KYC status": constants.KYС_STATUS_EDITING,
+		"user JSON BODY": user,
 	})
-
+	fmt.Println("CHECK THE BODY DATA",user)
 	err = a.saveWithStatus(ctx, constants.KYС_STATUS_EDITING, *user)
 	if HandleError(ctx, err, contextLogger, "") {
 		return
@@ -499,6 +502,7 @@ func (a *kycApi) getKYCs(ctx *gin.Context) {
 		"take":      take,
 		"sortOrder": sortOrder,
 		"statuses":  statusesStr,
+		"getKYC JSON BODY": user,
 	})
 
 	if sortBy == "Date" {
@@ -561,7 +565,7 @@ func (a *kycApi) saveWithStatus(ctx *gin.Context, status string, user db.User) e
 			Status:  constants.KYC_STATUS_NEW,
 			Company: user.Company,
 		}
-
+fmt.Println("getKYC JSON BODY", user)
 		err = db.KYCModel(tx).Create(dbKYC)
 		if err != nil {
 			return err

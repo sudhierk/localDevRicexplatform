@@ -14,23 +14,23 @@ import (
 )
 
 var (
-	TradeUrl                      = "/api/txCreate"
-	CompanyUrl                    = "/api/company"
-	RegisterParticipantUrl        = "/api/system/identities/issue"
-	AuthUrl                       = "/api/wallet/import?name="
-	GetTradeUrl                   = "/api/trade/%d"
-	GetDocumentUrl                = "/api/document/%d"
-	TradeDealUrl                  = "/api/tradeDeal"
-	TradeDeclinedUrl              = "/api/tradeDeclined"
-	CreateContract                = "/api/createContract"
-	SignContract                  = "/api/txSign"
-	DocumentaryInstructions       = "/api/documentaryInstructions"
-	DocumentaryInstructionsFilled = "/api/documentaryInstructionsFilled"
-	ShippingAdvice                = "/api/shippingAdvice"
-	ShippingAdviceFilled          = "/api/shippingAdviceFilled"
-	DocumentsRequired             = "/api/documentsRequired"
-	PaymentsRequired              = "/api/paymentsRequired"
-	AllDocumentsFilled            = "/api/allDocumentsFilled"
+	TradeUrl                      = "/api/org.ricex.net.txCreate"
+	CompanyUrl                    = "/api/org.ricex.net.company"
+	RegisterParticipantUrl        = "/api/org.ricex.net.system/identities/issue"
+	AuthUrl                       = "/api/org.ricex.net.wallet/import?name="
+	GetTradeUrl                   = "/api/org.ricex.net.trade/%d"
+	GetDocumentUrl                = "/api/org.ricex.net.document/%d"
+	TradeDealUrl                  = "/api/org.ricex.net.tradeDeal"
+	TradeDeclinedUrl              = "/api/org.ricex.net.tradeDeclined"
+	CreateContract                = "/api/org.ricex.net.createContract"
+	SignContract                  = "/api/org.ricex.net.txSign"
+	DocumentaryInstructions       = "/api/org.ricex.net.documentaryInstructions"
+	DocumentaryInstructionsFilled = "/api/org.ricex.net.documentaryInstructionsFilled"
+	ShippingAdvice                = "/api/org.ricex.net.shippingAdvice"
+	ShippingAdviceFilled          = "/api/org.ricex.net.shippingAdviceFilled"
+	DocumentsRequired             = "/api/org.ricex.net.documentsRequired"
+	PaymentsRequired              = "/api/org.ricex.net.paymentsRequired"
+	AllDocumentsFilled            = "/api/org.ricex.net.allDocumentsFilled"
 	BlockchainUrl                 = os.Getenv("BLOCKCHAIN_URL")
 )
 
@@ -270,7 +270,7 @@ func (h *HyperledgerApiStruct) TradeInstructions(companyID uint, author string, 
 	}
 
 	log.Debug(j)
-	resp, err := sendRequest(t, "POST", locJson, "/api/txCreateShipments", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txCreateShipments", 0)
 	log.Debug(string(resp), err)
 	if err != nil {
 		return
@@ -306,7 +306,7 @@ func (h *HyperledgerApiStruct) TradeAdvice(companyID uint, author string, tradeI
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txAdvice", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txAdvice", 0)
 	if err != nil {
 		return
 	}
@@ -351,7 +351,7 @@ func (h *HyperledgerApiStruct) UploadDocument(companyID uint, author string, tra
 	}
 
 	log.Debug("Upload doc", j)
-	resp, err := sendRequest(t, "POST", locJson, "/api/txUploadDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txUploadDocument", 0)
 	log.Debug(string(resp), err)
 	if err != nil {
 		return
@@ -394,7 +394,7 @@ func (h *HyperledgerApiStruct) ApproveDocument(companyID uint, author string, tr
 	}
 
 	log.Debug("Upload doc", j)
-	resp, err := sendRequest(t, "POST", locJson, "/api/txApproveDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txApproveDocument", 0)
 	log.Debug(string(resp), err)
 	if err != nil {
 		return
@@ -437,7 +437,7 @@ func (h *HyperledgerApiStruct) RejectDocument(companyID uint, author string, tra
 	}
 
 	log.Debug("Upload doc", j)
-	resp, err := sendRequest(t, "POST", locJson, "/api/txRejectDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txRejectDocument", 0)
 	log.Debug(string(resp), err)
 	if err != nil {
 		return
@@ -480,7 +480,7 @@ func (h *HyperledgerApiStruct) ReleaseForBuyerDocument(companyID uint, author st
 	}
 
 	log.Debug("Upload doc", j)
-	resp, err := sendRequest(t, "POST", locJson, "/api/txReleaseForBuyerDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txReleaseForBuyerDocument", 0)
 	log.Debug(string(resp), err)
 	if err != nil {
 		return
@@ -517,7 +517,7 @@ func (h *HyperledgerApiStruct) RemoveDocument(companyID int64, author string, tr
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txRemoveDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txRemoveDocument", 0)
 	if err != nil {
 		return
 	}
@@ -552,7 +552,7 @@ func (h *HyperledgerApiStruct) ConfirmDocument(companyID uint, author string, tr
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txConfirmDocument", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txConfirmDocument", 0)
 	if err != nil {
 		return
 	}
@@ -587,7 +587,7 @@ func (h *HyperledgerApiStruct) ProcessPayment(companyID uint, author string, tra
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txPayment", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txPayment", 0)
 	if err != nil {
 		return
 	}
@@ -621,7 +621,7 @@ func (h *HyperledgerApiStruct) ConfirmPayment(companyID uint, author string, tra
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txAcceptPayment", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txAcceptPayment", 0)
 	if err != nil {
 		return
 	}
@@ -655,7 +655,7 @@ func (h *HyperledgerApiStruct) CloseTrade(companyID uint, author string, tradeID
 		return
 	}
 
-	resp, err := sendRequest(t, "POST", locJson, "/api/txClose", 0)
+	resp, err := sendRequest(t, "POST", locJson, "/api/org.ricex.net.txClose", 0)
 	if err != nil {
 		return
 	}

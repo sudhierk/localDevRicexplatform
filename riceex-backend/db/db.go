@@ -27,7 +27,7 @@ func Init(connectionString string, migrate bool) (db *gorm.DB) {
 		//on docker
 		if _, err := os.Stat("./migrations/goose"); err == nil {
 			command = "./goose"
-			migrationsDir = "./migrations/"
+			migrationsDir = "./migrations"
 		}
 		log.Info("goose path and folder", command, migrationsDir)
 
