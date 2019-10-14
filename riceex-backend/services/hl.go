@@ -701,7 +701,7 @@ func (h *HyperledgerApiStruct) GetHistory(companyID uint, tradeID uint) (items [
 		return
 	}
 
-	filter := fmt.Sprintf("/api/History?filter={\"where\":{\"trade\":%d}}", tradeID)
+	filter := fmt.Sprintf("/api/org.ricex.net.History?filter={\"where\":{\"trade\":%d}}", tradeID)
 	resp, err := sendRequest(t, "GET", []byte{}, filter, 0)
 	//log.Debug("resp", string(resp))
 	if err != nil {

@@ -13,6 +13,7 @@ go get -u github.com/swaggo/gin-swagger
 export KEY_PATH=/home/administrator/project/go/src/gitlab.com/riceexchangeplatform/riceex-backend/keys/
 export SENDGRID_API_KEY=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
 export APP_DB="postgres://postgres:1234@localhost"
+export BLOCKCHAIN_URL=http://localhost:3000
 
 
 PgAdmin Installation Steps

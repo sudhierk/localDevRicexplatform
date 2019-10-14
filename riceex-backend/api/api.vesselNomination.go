@@ -174,7 +174,7 @@ func (a *tradeApi) smartNominateVessel(ctx *gin.Context) {
 // @Summary Put smart vessel
 // @Description Put smart vessel
 // @Tags trade
-// @Accept json
+// @Accept json2f
 // @Produce json
 // @Param req body requests.VesselNominationAcceptRequest true "vessel nomination accept request"
 // @Success 200 {object} api.StatusMessage
